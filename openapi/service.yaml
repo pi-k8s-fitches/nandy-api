@@ -1,0 +1,392 @@
+swagger: '2.0'
+info:
+  title: Pi K8s Fitches Nandy API
+  version: "0.1"
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /health:
+    get:
+      operationId: service.health
+      tags: [Health]
+      summary: Health check
+      responses:
+        200:
+          description: We're good
+  /setting:
+    get:
+      operationId: service.setting_list
+      tags: [Chore]
+      summary: Settings for dealing with Chores
+      responses:
+        200:
+          description: We're good
+  /person:
+    get:
+      operationId: service.person_list
+      tags: [Person]
+      summary: List Persons
+      responses:
+        200:
+          description: We're good
+    post:
+      operationId: service.person_create
+      tags: [Person]
+      summary: Creates a Person
+      parameters:
+        - in: body
+          name: Person
+          description: The person to create
+          schema:
+            type: object
+      responses:
+        201:
+          description: Person created
+  /person/{person_id}:
+    get:
+      operationId: service.person_retrieve
+      tags: [Person]
+      summary: Gets a person
+      parameters:
+        - in: path
+          required: true
+          name: person_id
+          type: integer
+          description: The id of the person to retrieve
+      responses:
+        200:
+          description: We're good
+    patch:
+      operationId: service.person_update
+      tags: [Person]
+      summary: Updates a person
+      parameters:
+        - in: path
+          required: true
+          name: person_id
+          type: integer
+          description: The id of the person to update
+      responses:
+        202:
+          description: We're good
+    delete:
+      operationId: service.person_delete
+      tags: [Person]
+      summary: Deletes a person
+      parameters:
+        - in: path
+          required: true
+          name: person_id
+          type: integer
+          description: The id of the person to delete
+      responses:
+        202:
+          description: We're good
+  /area:
+    get:
+      operationId: service.area_list
+      tags: [Area]
+      summary: List Areas
+      responses:
+        200:
+          description: We're good
+    post:
+      operationId: service.area_create
+      tags: [Area]
+      summary: Creates a Area
+      parameters:
+        - in: body
+          name: Area
+          description: The area to create
+          schema:
+            type: object
+      responses:
+        201:
+          description: Area created
+  /area/{area_id}:
+    get:
+      operationId: service.area_retrieve
+      tags: [Area]
+      summary: Gets a area
+      parameters:
+        - in: path
+          required: true
+          name: area_id
+          type: integer
+          description: The id of the area to retrieve
+      responses:
+        200:
+          description: We're good
+    patch:
+      operationId: service.area_update
+      tags: [Area]
+      summary: Updates a area
+      parameters:
+        - in: path
+          required: true
+          name: area_id
+          type: integer
+          description: The id of the area to update
+      responses:
+        202:
+          description: We're good
+    delete:
+      operationId: service.area_delete
+      tags: [Area]
+      summary: Deletes a area
+      parameters:
+        - in: path
+          required: true
+          name: area_id
+          type: integer
+          description: The id of the area to delete
+      responses:
+        202:
+          description: We're good
+  /area/{area_id}/{status}:
+    post:
+      operationId: service.area_status
+      tags: [Area]
+      summary: Changes the status of an area
+      parameters:
+        - in: path
+          required: true
+          name: area_id
+          type: string
+          description: The id of the area to change
+        - in: path
+          required: true
+          name: status
+          type: string
+          description: The status to set
+      responses:
+        202:
+          description: We're good
+  /template:
+    get:
+      operationId: service.template_list
+      tags: [Template]
+      summary: List Templates
+      responses:
+        200:
+          description: We're good
+    post:
+      operationId: service.template_create
+      tags: [Template]
+      summary: Creates a Template
+      parameters:
+        - in: body
+          name: Template
+          description: The template to create
+          schema:
+            type: object
+      responses:
+        201:
+          description: Template created
+  /template/{template_id}:
+    get:
+      operationId: service.template_retrieve
+      tags: [Template]
+      summary: Gets a template
+      parameters:
+        - in: path
+          required: true
+          name: template_id
+          type: integer
+          description: The id of the template to retrieve
+      responses:
+        200:
+          description: We're good
+    patch:
+      operationId: service.template_update
+      tags: [Template]
+      summary: Updates a template
+      parameters:
+        - in: path
+          required: true
+          name: template_id
+          type: integer
+          description: The id of the template to update
+      responses:
+        202:
+          description: We're good
+    delete:
+      operationId: service.template_delete
+      tags: [Template]
+      summary: Deletes a template
+      parameters:
+        - in: path
+          required: true
+          name: template_id
+          type: integer
+          description: The id of the template to delete
+      responses:
+        202:
+          description: We're good
+  /chore:
+    get:
+      operationId: service.chore_list
+      tags: [Chore]
+      summary: List Chores
+      responses:
+        200:
+          description: We're good
+    post:
+      operationId: service.chore_create
+      tags: [Chore]
+      summary: Creates a Chore
+      parameters:
+        - in: body
+          name: Chore
+          description: The chore to create
+          schema:
+            type: object
+      responses:
+        201:
+          description: Chore created
+  /chore/{chore_id}:
+    get:
+      operationId: service.chore_retrieve
+      tags: [Chore]
+      summary: Gets a chore
+      parameters:
+        - in: path
+          required: true
+          name: chore_id
+          type: integer
+          description: The id of the chore to retrieve
+      responses:
+        200:
+          description: We're good
+    patch:
+      operationId: service.chore_update
+      tags: [Chore]
+      summary: Updates a chore
+      parameters:
+        - in: path
+          required: true
+          name: chore_id
+          type: integer
+          description: The id of the chore to update
+      responses:
+        202:
+          description: We're good
+    delete:
+      operationId: service.chore_delete
+      tags: [Chore]
+      summary: Deletes a chore
+      parameters:
+        - in: path
+          required: true
+          name: chore_id
+          type: integer
+          description: The id of the chore to delete
+      responses:
+        202:
+          description: We're good
+  /chore/{chore_id}/{action}:
+    post:
+      operationId: service.chore_action
+      tags: [Chore]
+      summary: Completes the current chore task and goes onto the next
+      parameters:
+        - in: path
+          required: true
+          name: chore_id
+          type: string
+          description: The id of the chore to forward
+        - in: path
+          required: true
+          name: action
+          type: string
+          description: The action to perform
+      responses:
+        202:
+          description: We're good
+  /chore/{chore_id}/task/{task_id}/{action}:
+    post:
+      operationId: service.task_action
+      tags: [Chore]
+      summary: Completes the specified chore task and goes onto the next
+      parameters:
+        - in: path
+          required: true
+          name: chore_id
+          type: string
+          description: The id of the chore to change
+        - in: path
+          required: true
+          name: task_id
+          type: integer
+          description: The id of the task to complete
+        - in: path
+          required: true
+          name: action
+          type: string
+          description: The action to perform
+      responses:
+        202:
+          description: We're good
+  /act:
+    get:
+      operationId: service.act_list
+      tags: [Act]
+      summary: List Acts
+      responses:
+        200:
+          description: We're good
+    post:
+      operationId: service.act_create
+      tags: [Act]
+      summary: Creates a Act
+      parameters:
+        - in: body
+          name: Act
+          description: The act to create
+          schema:
+            type: object
+      responses:
+        201:
+          description: Act created
+  /act/{act_id}:
+    get:
+      operationId: service.act_retrieve
+      tags: [Act]
+      summary: Gets a act
+      parameters:
+        - in: path
+          required: true
+          name: act_id
+          type: integer
+          description: The id of the act to retrieve
+      responses:
+        200:
+          description: We're good
+    patch:
+      operationId: service.act_update
+      tags: [Act]
+      summary: Updates a act
+      parameters:
+        - in: path
+          required: true
+          name: act_id
+          type: integer
+          description: The id of the act to update
+      responses:
+        202:
+          description: We're good
+    delete:
+      operationId: service.act_delete
+      tags: [Act]
+      summary: Deletes a act
+      parameters:
+        - in: path
+          required: true
+          name: act_id
+          type: integer
+          description: The id of the act to delete
+      responses:
+        202:
+          description: We're good

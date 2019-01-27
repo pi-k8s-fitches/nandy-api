@@ -1,0 +1,40 @@
+version: '3'
+services:
+  mysql:
+    image: docker.io/mysql:5.5
+    environment:
+    - MYSQL_DATABASE=nandy
+    - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    ports:
+    - 3306:3306
+  redis:
+    image: "docker.io/gaf3/pi-k8s-fitches-redis:0.3-${MACHINE}"
+    ports:
+    - 6379:6379
+  graphite:
+    image: "docker.io/gaf3/pi-k8s-fitches-graphite:0.1-${MACHINE}"
+    ports:
+    - 7070:80
+    - 2003:2003
+  api:
+    image: "docker.io/gaf3/pi-k8s-fitches-nandy-api:${TAG}"
+    command: "/opt/pi-k8s/run.sh"
+    depends_on:
+    - redis
+    - graphite
+    - mysql
+    environment:
+    - REDIS_HOST=redis
+    - REDIS_PORT=6379
+    - MYSQL_HOST=mysql
+    - MYSQL_PORT=3306
+    - GRAPHITE_HOST=graphite
+    - GRAPHITE_PORT=2003
+    volumes:
+    - ./bin:/opt/pi-k8s/bin
+    - ./config:/opt/pi-k8s/config
+    - ./lib:/opt/pi-k8s/lib
+    - ./openapi:/opt/pi-k8s/openapi
+    - ./run.sh:/opt/pi-k8s/run.sh
+    ports:
+    - 7865:7865
